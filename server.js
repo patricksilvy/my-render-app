@@ -1,12 +1,23 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
 
 app.post('/register', async (req, res) => {
     const data = req.body;
-    const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    const browser = await puppeteer.launch({ 
+        args: [
+            '--no-sandbox', 
+            '--disable-setuid-sandbox',
+            '--single-process',
+            '--no-zygote'
+        ],
+        executablePath: process.env.NODE_ENV === 'production' 
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
+    });
     const page = await browser.newPage();
     await page.goto('https://test-next-crud.vercel.app/');
 
