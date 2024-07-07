@@ -9,9 +9,9 @@ app.post('/register', async (req, res) => {
     const data = req.body;
 
     // Verifique se 'nome' e 'idade' estão definidos e são do tipo correto
-    if (typeof data.nome !== 'string' || typeof data.idade !== 'number') {
-        return res.status(400).send('Nome deve ser uma string e idade deve ser um número.');
-    }
+    // if (typeof data.nome !== 'string' || typeof data.idade !== 'number') {
+    //     return res.status(400).send('Nome deve ser uma string e idade deve ser um número.');
+    // }
 
     const browser = await puppeteer.launch({ 
         args: [
