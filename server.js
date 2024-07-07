@@ -29,8 +29,8 @@ app.post('/register', async (req, res) => {
 
     await page.click('#new-client');
     
-    await page.type('[type="text"]', data.nome);
-    await page.type('[type="number"]', data.idade.toString()); // Converta idade para string
+    await page.type('#name', data.nome);
+    await page.type('#age', data.idade.toString()); // Converta idade para string
     
     await page.click('#save');
 
