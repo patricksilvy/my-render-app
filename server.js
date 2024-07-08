@@ -37,12 +37,11 @@ app.post('/register', async (req, res) => {
     
     await page.click('#save');
     console.log(data.nome + " com idade de " + data.idade.toString() + " adicionados")
-    await page.waitForNavigation();
-    console.log("erro aqui 1")
     await browser.close();
-    console.log("erro aqui 2")
+    console.log("erro aqui 1")
     
     res.send('Cadastro realizado com sucesso!');
+    console.log("erro aqui 2")
 });
 
 const PORT = process.env.PORT || 3000;
