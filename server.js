@@ -25,15 +25,18 @@ app.post('/register', async (req, res) => {
         : puppeteer.executablePath(),
     });
     const page = await browser.newPage();
-    await page.goto('https://test-next-crud.vercel.app/', {timeout: 0});
 
+    page.setDefaultNavigationTimeout(0)
+
+    await page.goto('https://test-next-crud.vercel.app/');
+    console.log("Dentro da pagina")
     await page.click('#new-client');
-    
+    console.log("Dentro do formulario")
     await page.type('#name', data.nome);
     await page.type('#age', data.idade.toString()); // Converta idade para string
     
     await page.click('#save');
-
+    console.log(data.nome + " com idade de " + data.idade.toString() + " adicionados")
     await page.waitForNavigation();
     await browser.close();
 
