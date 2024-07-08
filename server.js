@@ -25,7 +25,7 @@ app.post('/register', async (req, res) => {
         : puppeteer.executablePath(),
     });
     const page = await browser.newPage();
-    await page.goto('https://test-next-crud.vercel.app/');
+    await page.goto('https://test-next-crud.vercel.app/', {timeout: 0});
 
     await page.click('#new-client');
     
