@@ -29,19 +29,26 @@ app.post('/register', async (req, res) => {
     page.setDefaultNavigationTimeout(0)
 
     await page.goto('https://test-next-crud.vercel.app/');
+
+    page.waitForNavigation()
     console.log("Dentro da pagina")
+
     await page.click('#new-client');
     console.log("Dentro do formulario")
+
+    page.waitForNavigation()
     await page.type('#name', data.nome);
+
+    page.waitForNavigation()
     await page.type('#age', data.idade.toString()); // Converta idade para string
     
-    await page.click('#save');
+    page.waitForNavigation()
+    await page.click('#save')
+
     console.log(data.nome + " com idade de " + data.idade.toString() + " adicionados")
     await browser.close();
-    console.log("erro aqui 1")
     
     res.send('Cadastro realizado com sucesso!');
-    console.log("erro aqui 2")
 });
 
 const PORT = process.env.PORT || 3000;
